@@ -1,8 +1,14 @@
 {
-    "name": "symfony/framework-standard-edition",
+    "name": "mahmoud/address-book",
+    "description": "An app developed with PHP and Symfony Framework allows you to manage your contact list.",
+    "authors": [
+        {
+            "name": "Mahmoud Khawatmi",
+            "email": "mahm.khaw@gmail.com"
+        }
+    ],
     "license": "MIT",
     "type": "project",
-    "description": "The \"Symfony Standard Edition\" distribution",
     "autoload": {
         "psr-4": {
             "AppBundle\\": "src/AppBundle"
