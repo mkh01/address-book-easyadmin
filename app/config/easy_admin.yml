@@ -1,0 +1,6 @@
+# config/packages/easy_admin.yml
+easy_admin:
+    entities:
+        Contact:
+            class: App\Entity\Contact
+
