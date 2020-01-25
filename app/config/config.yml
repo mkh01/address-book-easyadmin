@@ -44,6 +44,8 @@ doctrine:
         path: '%database_path%'
         memory:   true
         charset: UTF8
+        types:
+            phone_number: Misd\PhoneNumberBundle\Doctrine\DBAL\Types\PhoneNumberType
 
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'

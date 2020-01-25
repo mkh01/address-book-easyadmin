@@ -1,6 +1,21 @@
-# config/packages/easy_admin.yml
+# config/easy_admin.yml
 easy_admin:
     entities:
         Contact:
-            class: App\Entity\Contact
+            class: AppBundle\Entity\Contact
+            label: 'easyAdmin.contact.label'
+            list:
+                fields: ['id', 'firstName', 'lastName', 'phoneNumber']
+                sort: ['id', 'ASC']
+            form:
+                fields:
+                    - { property: 'firstName'}
+                    - { property: 'lastName'}
+                    - { property: 'phoneNumber', type: 'Misd\PhoneNumberBundle\Form\Type\PhoneNumberType' }
+                    - { property: 'birthday', type: 'Symfony\Component\Form\Extension\Core\Type\BirthdayType' }
+                    - { property: 'email', type: 'Symfony\Component\Form\Extension\Core\Type\EmailType' }
+                    - 'street'
+                    - 'zip'
+                    - 'city'
+                    - 'country'
 
