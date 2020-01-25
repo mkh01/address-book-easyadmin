@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 class EasyAdminController extends BaseController
 {
     /**
-     * @Route("/", name="easyadmin")
+     * @Route(name="easyadmin")
      *
      * @param Request $request
      *
