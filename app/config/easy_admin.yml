@@ -1,11 +1,12 @@
 # config/easy_admin.yml
 easy_admin:
+    site_name: 'Address Book'
     entities:
         Contact:
             class: AppBundle\Entity\Contact
-            label: 'easyAdmin.contact.label'
+            label: 'easyAdmin.contact.list.label'
             list:
-                fields: ['id', 'firstName', 'lastName', 'phoneNumber']
+                fields: ['id', 'firstName', 'lastName', { property: 'phoneNumber', template: 'EasyAdminBundle/field_tel.html.twig'}, 'email', 'country']
                 sort: ['id', 'ASC']
             form:
                 fields:
