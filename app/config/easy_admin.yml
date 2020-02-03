@@ -1,21 +1,29 @@
 # config/easy_admin.yml
 easy_admin:
-    site_name: 'Address Book'
-    entities:
-        Contact:
-            class: AppBundle\Entity\Contact
-            label: 'easyAdmin.contact.list.label'
-            list:
-                fields: ['id', 'firstName', 'lastName', { property: 'phoneNumber', template: 'EasyAdminBundle/field_tel.html.twig'}, 'email', 'country']
-                sort: ['id', 'ASC']
-            form:
-                fields:
-                    - { property: 'firstName'}
-                    - { property: 'lastName'}
-                    - { property: 'phoneNumber', type: 'Misd\PhoneNumberBundle\Form\Type\PhoneNumberType' }
-                    - { property: 'birthday', type: 'Symfony\Component\Form\Extension\Core\Type\BirthdayType' }
-                    - { property: 'email', type: 'Symfony\Component\Form\Extension\Core\Type\EmailType' }
-                    - 'street'
-                    - 'zip'
-                    - 'city'
-                    - 'country'
+  site_name: 'Address Book'
+  entities:
+    Contact:
+      class: AppBundle\Entity\Contact
+      label: 'easyAdmin.contact.list.label'
+      list:
+        fields:
+          - { property: 'id'}
+          - { property: 'firstName'}
+          - { property: 'lastName'}
+          - { property: 'phoneNumber', template: 'EasyAdminBundle/field_tel.html.twig'}
+          - { property: 'email', template: 'EasyAdminBundle/field_email.html.twig'}
+          - { property: 'country', template: 'EasyAdminBundle/field_string.html.twig'}
+          - { property: 'image', type: 'image', base_path: '%app.path.contact_images%', template: 'EasyAdminBundle/field_image.html.twig'}
+        sort: ['id', 'ASC']
+      form:
+        fields:
+          - { property: 'firstName'}
+          - { property: 'lastName'}
+          - { property: 'phoneNumber', type: 'Misd\PhoneNumberBundle\Form\Type\PhoneNumberType', type_options: {  attr: { placeholder: '+49 1xx xxxxxxx' } } }
+          - { property: 'birthday', type: 'Symfony\Component\Form\Extension\Core\Type\BirthdayType' }
+          - { property: 'email', type: 'Symfony\Component\Form\Extension\Core\Type\EmailType' }
+          - { property: 'street'}
+          - { property: 'zip'}
+          - { property: 'city'}
+          - { property: 'country'}
+          - { property: 'imageFile', type: 'vich_image', base_path: '%app.path.contact_images%'}

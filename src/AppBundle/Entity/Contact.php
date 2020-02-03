@@ -5,12 +5,17 @@ namespace AppBundle\Entity;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use libphonenumber\PhoneNumber;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Exception;
+use DateTime;
 
 /**
  * Class Contact
  * @package AppBundle\Entity
  * @ORM\Table(name="contact")
  * @ORM\Entity()
+ * @Vich\Uploadable
  */
 class Contact
 {
@@ -40,6 +45,8 @@ class Contact
     private $lastName;
 
     /**
+     * @var DateTimeInterface $birthday
+     *
      * @ORM\Column(type="date", nullable=true)
      *
      */
@@ -54,7 +61,7 @@ class Contact
     private $email;
 
     /**
-     * @var null|string $street
+     * @var string $street
      *
      * @ORM\Column(type="string", nullable=true)
      */
@@ -89,9 +96,32 @@ class Contact
     private $phoneNumber;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
+     */
+    private $image;
+
+    /**
+     * @Vich\UploadableField(mapping="contact_images", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @var DateTime
+     */
+    private $updatedAt;
+
+    public function __construct()
+    {
+        $this->updatedAt = new DateTime();
+    }
+
+    /**
      * @return int
      */
-    public function getId(): ?int
+    public function getId()
     {
         return $this->id;
     }
@@ -101,7 +131,7 @@ class Contact
      *
      * @return string
      */
-    public function getFirstName(): ?string
+    public function getFirstName()
     {
         return $this->firstName;
     }
@@ -113,7 +143,7 @@ class Contact
      *
      * @return $this
      */
-    public function setFirstName($firstName): self
+    public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
 
@@ -125,7 +155,7 @@ class Contact
      *
      * @return string
      */
-    public function getLastName(): ?string
+    public function getLastName()
     {
         return $this->lastName;
     }
@@ -137,7 +167,7 @@ class Contact
      *
      * @return $this
      */
-    public function setLastName($lastName): self
+    public function setLastName($lastName)
     {
         $this->lastName = $lastName;
 
@@ -147,14 +177,15 @@ class Contact
     /**
      * @return DateTimeInterface
      */
-    public function getBirthday(): ?DateTimeInterface
+    public function getBirthday()
     {
         return $this->birthday;
     }
+
     /**
      * @param DateTimeInterface $birthday
      */
-    public function setBirthday(?DateTimeInterface $birthday): void
+    public function setBirthday(DateTimeInterface $birthday = null)
     {
         $this->birthday = $birthday;
     }
@@ -162,7 +193,7 @@ class Contact
     /**
      * @return string
      */
-    public function getEmail(): ?string
+    public function getEmail()
     {
         return $this->email;
     }
@@ -180,7 +211,7 @@ class Contact
      *
      * @return string
      */
-    public function getStreet(): ?string
+    public function getStreet()
     {
         return $this->street;
     }
@@ -192,7 +223,7 @@ class Contact
      *
      * @return $this
      */
-    public function setStreet($street): self
+    public function setStreet($street)
     {
         $this->street = $street;
 
@@ -204,7 +235,7 @@ class Contact
      *
      * @return string
      */
-    public function getZip(): ?string
+    public function getZip()
     {
         return $this->zip;
     }
@@ -216,7 +247,7 @@ class Contact
      *
      * @return $this
      */
-    public function setZip($zip): self
+    public function setZip($zip)
     {
         $this->zip = $zip;
 
@@ -228,7 +259,7 @@ class Contact
      *
      * @return string
      */
-    public function getCity(): ?string
+    public function getCity()
     {
         return $this->city;
     }
@@ -240,7 +271,7 @@ class Contact
      *
      * @return $this
      */
-    public function setCity($city): self
+    public function setCity($city)
     {
         $this->city = $city;
 
@@ -248,9 +279,9 @@ class Contact
     }
 
     /**
-     * @return null|string
+     * @return string
      */
-    public function getCountry(): ?string
+    public function getCountry()
     {
         return $this->country;
     }
@@ -260,7 +291,7 @@ class Contact
      *
      * @return $this
      */
-    public function setCountry($country): self
+    public function setCountry($country)
     {
         $this->country = $country;
         return $this;
@@ -271,7 +302,7 @@ class Contact
      *
      * @return PhoneNumber
      */
-    public function getPhoneNumber(): ?PhoneNumber
+    public function getPhoneNumber()
     {
         return $this->phoneNumber;
     }
@@ -283,10 +314,46 @@ class Contact
      *
      * @return $this
      */
-    public function setPhoneNumber($phoneNumber): self
+    public function setPhoneNumber($phoneNumber)
     {
         $this->phoneNumber = $phoneNumber;
 
         return $this;
+    }
+
+    /**
+     * @param File $imageFile
+     * @throws Exception
+     */
+    public function setImageFile(File $imageFile = null)
+    {
+        $this->imageFile = $imageFile;
+    }
+
+    /**
+     * @return File
+     */
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * @param $image
+     * @return string
+     */
+    public function setImage($image = '')
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }

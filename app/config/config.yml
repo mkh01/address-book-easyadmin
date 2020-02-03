@@ -63,3 +63,14 @@ swiftmailer:
 sensio_framework_extra:
    router:
         annotations: false
+
+vich_uploader:
+    # supported drivers (orm, mongodb, propel, phpcr)
+    db_driver: orm
+    mappings:
+        contact_images:
+            uri_prefix:         '%app.path.contact_images%'
+            upload_destination: '%kernel.project_dir%/web%app.path.contact_images%'
+            delete_on_update: true
+            delete_on_remove: true
+            namer: Vich\UploaderBundle\Naming\UniqidNamer
