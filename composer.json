@@ -1,6 +1,6 @@
 {
-    "name": "mahmoud/address-book",
-    "description": "An app developed with PHP and Symfony Framework allows you to manage your contact list.",
+    "name": "mahmoud/address-book-easyadmin",
+    "description": "An app developed with PHP, Symfony Framework and EasyAdminBundle allows you to manage your contact list.",
     "authors": [
         {
             "name": "Mahmoud Khawatmi",
