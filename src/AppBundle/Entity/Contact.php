@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use libphonenumber\PhoneNumber;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 use Exception;
 use DateTime;
 
@@ -102,6 +103,11 @@ class Contact
     private $image;
 
     /**
+     * @Assert\File(
+     *     mimeTypes = {"image/jpeg", "image/gif", "image/png"},
+     *     mimeTypesMessage = "Wrong file type. allowed (jpg,gif,png)"
+     * )
+     *
      * @Vich\UploadableField(mapping="contact_images", fileNameProperty="image")
      * @var File
      */
